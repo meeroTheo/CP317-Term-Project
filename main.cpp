@@ -1,15 +1,3 @@
-/*
- -------------------------------------
- File:    main.cpp
- Project: tests
- file description
- -------------------------------------
- Author:  Chris Shaw
- ID:      190965930
- Email:   shaw5930@mylaurier.ca
- Version  2022-11-13
- -------------------------------------
- */
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
