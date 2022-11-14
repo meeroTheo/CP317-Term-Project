@@ -59,13 +59,14 @@ void readNameFile(unordered_map<string, student> &studentMap) {
         // if student object not already created, create
         bool found = false;
         if (studentMap.find(result[0]) == studentMap.end()) {
-            student tempS(result[1], result[0]);
-            studentMap[result[0]] = tempS;
+            //student tempS(result[1], result[0]);
+            //studentMap[result[0]] = tempS;
         }
         result.clear();
     }
     readName.close();
 }
+
 int main() {
 
     unordered_map<string, course> courseMap;

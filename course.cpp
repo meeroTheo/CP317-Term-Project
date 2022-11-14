@@ -1,10 +1,7 @@
 #include "course.h"
-course::course() {
-    this->courseCode = "";
-}
-course::course(string code, string id, tuple<short, short, short, short> grades) : courseCode(code) {
-    cStudents[id] = grades;
-}
+//FIX
+course::course() : courseCode(NULL), cStudents({{" ",make_tuple(NULL,NULL,NULL,NULL)}}) {}
+course::course(string code, string id, tuple<short, short, short, short> grades) : courseCode(code),cStudents({{id,grades}}) {}
 float course::calFinal() {
     return 0.0;
 }
