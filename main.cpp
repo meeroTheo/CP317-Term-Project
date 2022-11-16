@@ -20,8 +20,8 @@ void readCourseFile(unordered_map<string, course> &courseMap, unordered_map<stri
         }
         // make tuple of short cast marks
         tuple<short, short, short, short> tempTuple;
-        tempTuple = make_tuple((short)stoll(result[2]), (short)stoll(result[3]),
-                               (short)stoll(result[4]), (short)stoll(result[5]));
+        tempTuple = make_tuple((short)stoi(result[2]), (short)stoi(result[3]),
+                               (short)stoi(result[4]), (short)stoi(result[5]));
 
         // create and insert new course or existing data from data obtained
         bool found = false;
