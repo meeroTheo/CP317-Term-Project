@@ -25,10 +25,10 @@ void readCourseFile(unordered_map<string, course> &courseMap, unordered_map<stri
 
         // create and insert new course or existing data from data obtained
         bool found = false;
-        if (courseMap.find(result[1]) != courseMap.end()) {        // found (course object already exists)
-            courseMap[result[1]].addStudent(result[0], tempTuple); // add student and grades to course object
-            studentMap[result[0]].addCourse(result[1]);            // add course code to student class
-        } else {
+        if (courseMap.find(result[1]) != courseMap.end()) {                 // found (course object already exists)
+            courseMap[result[1]].addStudent(result[0], tempTuple);          // add student and grades to course object
+            studentMap[result[0]].addCourse(result[1]);                     // add course code to student class
+        } else {                                                            // not found
             courseMap[result[1]] = course(result[1], result[0], tempTuple); // add course to courseMap
             studentMap[result[0]].addCourse(result[1]);                     // add course code to student class
         }
@@ -57,7 +57,7 @@ void readNameFile(unordered_map<string, student> &studentMap) {
 
         // if student object not already created, create
         bool found = false;
-        if (studentMap.find(result[0]) == studentMap.end())
+        if (studentMap.find(result[0]) == studentMap.end()) // student object not found in map
             studentMap[result[0]] = student(result[1], result[0]);
         result.clear();
     }
@@ -65,12 +65,12 @@ void readNameFile(unordered_map<string, student> &studentMap) {
 }
 
 int main() {
-    cout << "TEST" << endl;
+    cout << "TEST:" << endl;
     unordered_map<string, course> courseMap;
     unordered_map<string, student> studentMap;
     readNameFile(studentMap);
-    cout << "DONE student" << endl;
+    cout << "TEST: DONE student" << endl;
     readCourseFile(courseMap, studentMap);
-    cout << "DONE" << endl;
+    cout << "TEST: DONE" << endl;
     return 0;
 }

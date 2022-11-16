@@ -14,7 +14,7 @@ private:
 public:
     course();
     course(string code, string id, tuple<short, short, short, short> grades);
-    float calFinal();
+    float calFinal(string id);
     string getCourseCode();
     void addStudent(string student, tuple<short, short, short, short> grades);
     void deleteStudent(string student);

@@ -1,5 +1,5 @@
 #include "student.h"
-student::student() : name(NULL), id(NULL){}
+student::student() : name(" "), id(" "), courses({" "}) {}
 student::student(string studentName, string studentID) : name(studentName), id(studentID) {}
 student::student(string studentName, string studentID, string course) : name(studentName), id(studentID) {
     courses.push_back(course);

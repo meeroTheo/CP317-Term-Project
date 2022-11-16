@@ -1,14 +1,19 @@
 #include "course.h"
 
-course::course() : courseCode(NULL) {};
+course::course() : courseCode(" "), cStudents({{" ", make_tuple((short)0, (short)0, (short)0, (short)0)}}){};
 course::course(string code, string id, tuple<short, short, short, short> grades) : courseCode(code) {
-    cStudents[id]=grades;
+    cStudents[id] = grades;
 }
-float course::calFinal() {
+float course::calFinal(string id) {
+    /*
+    calFinal:
+    Calculates the final grade a student given their id and
+    returns a float which is the final grade.
+    */
     return 0.0;
 }
 string course::getCourseCode() {
-    return courseCode; // maybe return a copy with get stuff?
+    return courseCode;
 }
 void course::addStudent(string student, tuple<short, short, short, short> grades) {
     cStudents[student] = grades;
