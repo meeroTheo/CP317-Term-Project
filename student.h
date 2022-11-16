@@ -1,18 +1,21 @@
 #pragma once
-#include "course.h"
+#include <iostream>
+#include <vector>
+
+using namespace std;
 
 class student {
 private:
     string name;
     string id;
-    vector<course> courses;
+    vector<string> courses;
 
 public:
     student();
     student(string studentName, string studentID);
-    student(string studentName, string studentID, course &course);
+    student(string studentName, string studentID, string course);
     string getID();
     string getName();
-    void addCourse(course &course);
-    void addCourse(vector<course> courseV);
+    void addCourse(string course);
+    void addCourse(vector<string> courseList);
 };

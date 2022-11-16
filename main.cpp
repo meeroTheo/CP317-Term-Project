@@ -25,13 +25,12 @@ void readCourseFile(unordered_map<string, course> &courseMap, unordered_map<stri
 
         // create and insert new course or existing data from data obtained
         bool found = false;
-        if (courseMap.find(result[1]) != courseMap.end()) {        // found
+        if (courseMap.find(result[1]) != courseMap.end()) {        // found (course object already exists)
             courseMap[result[1]].addStudent(result[0], tempTuple); // add student and grades to course object
-            studentMap[result[0]].addCourse(courseMap[result[1]]); // add course to student class
+            studentMap[result[0]].addCourse(result[1]);            // add course code to student class
         } else {
-            course tempC(result[1], result[0], tempTuple);
-            courseMap[result[1]] = tempC;                          // add course to courseMap
-            studentMap[result[0]].addCourse(courseMap[result[1]]); // add course to student class
+            courseMap[result[1]] = course(result[1], result[0], tempTuple); // add course to courseMap
+            studentMap[result[0]].addCourse(result[1]);                     // add course code to student class
         }
         result.clear();
     }
@@ -58,20 +57,20 @@ void readNameFile(unordered_map<string, student> &studentMap) {
 
         // if student object not already created, create
         bool found = false;
-        if (studentMap.find(result[0]) == studentMap.end()) {
-            //student tempS(result[1], result[0]);
-            //studentMap[result[0]] = tempS;
-        }
+        if (studentMap.find(result[0]) == studentMap.end())
+            studentMap[result[0]] = student(result[1], result[0]);
         result.clear();
     }
     readName.close();
 }
 
 int main() {
-
+    cout << "TEST" << endl;
     unordered_map<string, course> courseMap;
     unordered_map<string, student> studentMap;
     readNameFile(studentMap);
+    cout << "DONE student" << endl;
     readCourseFile(courseMap, studentMap);
+    cout << "DONE" << endl;
     return 0;
 }

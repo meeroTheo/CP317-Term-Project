@@ -19,5 +19,5 @@ public:
     void addStudent(string student, tuple<short, short, short, short> grades);
     void deleteStudent(string student);
     void changeGrade(string student, int assessment, short grade);
-    void changeGrade(string student, vector<int> assessment, tuple<short, short, short, short> grade);
+    void changeGrade(string student, tuple<short, short, short, short> grades);
 };
