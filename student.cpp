@@ -16,4 +16,7 @@ void student::addCourse(string course) {
 }
 // overload
 void student::addCourse(vector<string> courseV) {
+    for (auto item : courseV) {
+        courses.push_back(item);
+    }
 }
