@@ -5,11 +5,6 @@ course::course(string code, string id, tuple<short, short, short, short> grades)
     cStudents[id] = grades;
 }
 float course::calFinal(string id) {
-    /*
-    calFinal:
-    Calculates the final grade a student given their id and
-    returns a float which is the final grade.
-    */
     return 0.0;
 }
 string course::getCourseCode() {
