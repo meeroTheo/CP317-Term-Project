@@ -12,11 +12,11 @@ string student::getName() {
     return name;
 }
 void student::addCourse(string course) {
-    courses.push_back(course);
+    courses.push_back(course); //add course to this student's list/vector of taken courses.
 }
 // overload
 void student::addCourse(vector<string> courseV) {
-    for (auto item : courseV) {
-        courses.push_back(item);
+    for (auto item : courseV) { //loop through each item in parameter vector
+        courses.push_back(item);  //add course
     }
 }
