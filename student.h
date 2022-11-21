@@ -37,6 +37,14 @@ public:
      *         returns student object
      */
     student(string studentName, string studentID, string course);
+    
+    /*
+     * Description:
+     *    Gets student's numeric ID
+     *
+     * returns:
+     *         returns student's ID (string)
+     */
     string getID();
 
     /*
@@ -70,5 +78,16 @@ public:
      */
     void addCourse(string course);
     
+    /*
+     * Description:
+     *    Adds a set of courses to student's course list.
+     *
+     * Parameters:
+     *         courseList: a set of multiple course codes (vector<string>)
+     * returns:
+     *         void
+     * side effects:
+     *         modifies courses
+     */
     void addCourse(vector<string> courseList);
 };
