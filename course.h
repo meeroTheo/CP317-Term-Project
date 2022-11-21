@@ -24,10 +24,31 @@ public:
      * Parameters:
      *         id: the student's numerical id (string)
      * returns:
-     *         finalGrade: the student's overall final grade as a decimal value (float)
+     *         Returns the student's overall final grade as a decimal value (float)
      */
     float calFinal(string id);
+    
+    /*
+     * Description:
+     *    Obtains the course's designated course code
+     *
+     * returns:
+     *         returns the course code for this particular course (String)
+     */
     string getCourseCode();
+     
+    /*
+     * Description:
+     *    Adds student and their assessment grades into the course.
+     *
+     * Parameters:
+     *         student: the student's numerical id (string)
+     *         grades: a list of four grades, each out of 100, specific to this course (tuple)
+     * returns:
+     *         void
+     * side effects:
+     *         Adds specified student into cStudents
+     */
     void addStudent(string student, tuple<short, short, short, short> grades);
     
     /*
