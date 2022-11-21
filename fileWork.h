@@ -9,5 +9,5 @@ private:
 public:
     static void readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap);
     static void readNameFile(unordered_map<string, student> &studentMap);
-    static void writeOutput();
+    static void writeOutput(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap);
 };

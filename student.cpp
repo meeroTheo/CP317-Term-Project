@@ -11,6 +11,9 @@ string student::getID() {
 string student::getName() {
     return name;
 }
+vector<string> student::getCourses(){
+    return courses;
+}
 void student::addCourse(string course) {
     courses.push_back(course); //add course to this student's list/vector of taken courses.
 }

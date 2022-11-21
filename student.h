@@ -16,6 +16,7 @@ public:
     student(string studentName, string studentID, string course);
     string getID();
     string getName();
+    vector<string> getCourses();
     void addCourse(string course);
     void addCourse(vector<string> courseList);
 };
