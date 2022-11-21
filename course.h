@@ -16,14 +16,15 @@ public:
     course(string code, string id, tuple<short, short, short, short> grades);
      
     /*
-     * Parameters:
-     *         id: the student's numerical id (string)
-     * returns:
-     *         finalGrade: the student's overall final grade as a decimal value (float)
      * Description:
      *    Initialize finalGrade as a float of 0.0.
      *    Check if student is in course, then make finalGrade sum of weighted assessments
      *    (first 3 are worth 0.2, final is worth 0.4) and return.
+     *
+     * Parameters:
+     *         id: the student's numerical id (string)
+     * returns:
+     *         finalGrade: the student's overall final grade as a decimal value (float)
      */
     float calFinal(string id);
     string getCourseCode();
