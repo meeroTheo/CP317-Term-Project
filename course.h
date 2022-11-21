@@ -29,7 +29,46 @@ public:
     float calFinal(string id);
     string getCourseCode();
     void addStudent(string student, tuple<short, short, short, short> grades);
+    
+    /*
+     * Description:
+     *    Erases student from course.
+     *
+     * Parameters:
+     *         student: the student's numerical id (string)
+     * returns:
+     *         void
+     * side effects:
+     *         removes specified student from cStudents
+     */
     void deleteStudent(string student);
+
+    /*
+     * Description:
+     *    Changes the grade of a specific assessment for a student.
+     *
+     * Parameters:
+     *         student: the student's numerical id (string)
+     *         assessment: the position of the assessment to be changed in the tuple (1-4) (int)
+     *         grade: the new grade to replace with the old grade (short)
+     * returns:
+     *         void
+     * side effects:
+     *         modifies a tuple value from a student's grades in cStudents
+     */
     void changeGrade(string student, int assessment, short grade);
+
+    /*
+     * Description:
+     *    Changes a student's assessment grade list
+     *
+     * Parameters:
+     *         student: the student's numerical id (string)
+     *         grades: a new list of grades to replace the student's old grades (tuple)
+     * returns:
+     *         void
+     * side effects:
+     *         modifies grades from a student in cStudents
+     */
     void changeGrade(string student, tuple<short, short, short, short> grades);
 };
