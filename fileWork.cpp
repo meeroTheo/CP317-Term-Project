@@ -1,6 +1,7 @@
 #include "fileWork.h"
 #include <fstream>
 #include <sstream>
+#include <iomanip>
 
 void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap) {
     ifstream readCourse("CourseFile.txt");
@@ -63,6 +64,14 @@ void fileWork::readNameFile(unordered_map<string, student> &studentMap) {
     readName.close();
 }
 
-void fileWork::writeOutput(){
+void fileWork::writeOutput(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap){
+    ofstream myfile;
+    myfile.open ("output.txt");
+    for (auto& [id,s]: studentMap){
+        for (string code: s.getCourses()){
+            myfile << id << ", " << s.getName() << ", " << code << ", " << fixed << setprecision(1) << courseMap[code].calFinal(id) << "\n";
+        }
+    }
+    myfile.close();
 
 }
