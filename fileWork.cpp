@@ -3,8 +3,7 @@
 #include <sstream>
 #include <iomanip>
 
-void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap) {
-    ifstream readCourse("CourseFile.txt");
+void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ifstream &readCourse) {
     string my_str;
     vector<string> result;
     // read each line in file
@@ -34,13 +33,10 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
         }
         result.clear();
     }
-
-    readCourse.close();
 }
 
-void fileWork::readNameFile(unordered_map<string, student> &studentMap) {
+void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream &readName) {
     string::size_type sz = 0;
-    ifstream readName("NameFile.txt");
     string my_str;
     vector<string> result;
     // read each line in file
@@ -61,17 +57,12 @@ void fileWork::readNameFile(unordered_map<string, student> &studentMap) {
             studentMap[result[0]] = student(result[1], result[0]);
         result.clear();
     }
-    readName.close();
 }
 
-void fileWork::writeOutput(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap){
-    ofstream myfile;
-    myfile.open ("output.txt");
+void fileWork::writeOutput(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ofstream &myfile){
     for (auto& [id,s]: studentMap){
         for (string code: s.getCourses()){
             myfile << id << ", " << s.getName() << ", " << code << ", " << fixed << setprecision(1) << courseMap[code].calFinal(id) << "\n";
         }
     }
-    myfile.close();
-
 }
