@@ -13,6 +13,7 @@ float course::calFinal(string id) {
     float finalGrade = 0.0;
     if (cStudents.find(id) == cStudents.end()) {
         cout << "Student not found" << endl;
+        return 0.0;
     }
     // If the student is in the course
     finalGrade = (get<0>(cStudents[id]) * 0.2) + (get<1>(cStudents[id]) * 0.2) + (get<2>(cStudents[id]) * 0.2) + (get<3>(cStudents[id]) * 0.4);
