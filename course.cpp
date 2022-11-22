@@ -13,6 +13,7 @@ float course::calFinal(string id) {
     {
         //if student is not found
         cout << "Student not found" << endl;
+        return -1;
     }
     else 
     {
