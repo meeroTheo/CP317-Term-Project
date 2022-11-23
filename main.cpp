@@ -1,7 +1,5 @@
 #include "fileWork.h"
-#include <fstream>
-#include <iomanip>
-#include <sstream>
+
 
 int main() {
     unordered_map<string, course> courseMap;

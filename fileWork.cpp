@@ -1,7 +1,4 @@
 #include "fileWork.h"
-#include <fstream>
-#include <iomanip>
-#include <sstream>
 
 void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ifstream &readCourse) {
     string my_str;

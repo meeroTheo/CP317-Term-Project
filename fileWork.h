@@ -1,6 +1,9 @@
 #pragma once
 #include "course.h"
 #include "student.h"
+#include <fstream>
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 class fileWork{
