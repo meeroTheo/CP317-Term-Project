@@ -27,7 +27,6 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
         tempTuple = make_tuple((short)stoi(result[2]), (short)stoi(result[3]),
                                (short)stoi(result[4]), (short)stoi(result[5]));
         // create and insert new course or existing data from data obtained
-        bool found = false;
         if (courseMap.find(result[1]) != courseMap.end()) {            // found (course object already exists)
             if (studentMap.find(result[0]) != studentMap.end()) {      // if student object exists
                 courseMap[result[1]].addStudent(result[0], tempTuple); // add student and grades to course object
@@ -44,7 +43,6 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
 }
 
 void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream &readName) {
-    string::size_type sz = 0;
     string my_str;
     vector<string> result;
     // read each line in file
@@ -68,7 +66,6 @@ void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream
             continue;
         }
         // if student object not already created, create
-        bool found = false;
         if (studentMap.find(result[0]) == studentMap.end())        // student object not found in map
             studentMap[result[0]] = student(result[1], result[0]); // put student in their place in student map, according to ID
         result.clear();
