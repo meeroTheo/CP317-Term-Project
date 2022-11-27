@@ -1,4 +1,5 @@
 #include "course.h"
+#include <sstream>
 
 course::course() : courseCode(" "), cStudents({{" ", make_tuple((short)0, (short)0, (short)0, (short)0)}}){};
 course::course(string code, string id, tuple<short, short, short, short> grades) : courseCode(code) {
@@ -24,6 +25,11 @@ float course::calFinal(string id) {
 }
 string course::getCourseCode() {
     return courseCode;
+}
+string course::getGrades(string id){
+    ostringstream myStr;
+    myStr << '(' << get<0>(cStudents[id]) << "*0.2 + " << get<1>(cStudents[id]) << "*0.2 + " << get<2>(cStudents[id]) << "*0.2 + " << get<3>(cStudents[id]) << "*0.4) = ";
+    return myStr.str();
 }
 void course::addStudent(string student, tuple<short, short, short, short> grades) {
     cStudents[student] = grades;

@@ -1,7 +1,7 @@
 #include "fileWork.h"
 
 void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ifstream &readCourse) {
-    string my_str;
+    string my_str, substr;
     vector<string> result;
     // read each line in file
     while (getline(readCourse, my_str)) {
@@ -10,17 +10,24 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
 
         // execute until end of line
         while (s_stream.good()) {
-            string substr;
             // split commas and remove spaces at front of delimited strings
             getline(s_stream, substr, ',');
             substr.erase(0, substr.find_first_not_of(' '));
             // add to a list
             result.push_back(substr);
         }
-        if (result.size() != 6) { // skip invalid inputs
-            cout << "Invalid input: CourseFile.txt" << endl;
-            result.clear();
-            continue;
+        //error handling
+        if(!isdigit(result[0][0])){ //missing ID
+            throw (MyException("Incorrect input in courseFile.txt (missing ID): "+my_str, 100));
+        }
+        if (result.size() != 6) { // invalid inputs
+            throw (MyException("Incorrect input in courseFile.txt (missing input): "+my_str, 101));
+        }   //incorrect course code
+        if (result[1].length() != 5 || !isalpha(result[1][0]) || !isalpha(result[1][1]) || !isdigit(result[1][2]) || !isdigit(result[1][3]) || !isdigit(result[1][4])){
+            throw (MyException("Incorrect course code in courseFile.txt: "+result[1], 102));
+        }   //incorrect grade
+        if (stoi(result[2]) > 100 || stoi(result[3]) > 100 || stoi(result[4]) > 100 || stoi(result[5]) > 100 ){
+            throw (MyException("Incorrect grade in courseFile.txt (too large): "+my_str.substr(19,14), 103));
         }
         // make tuple of short cast marks
         tuple<short, short, short, short> tempTuple;
@@ -43,7 +50,7 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
 }
 
 void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream &readName) {
-    string my_str;
+    string my_str,substr;
     vector<string> result;
     // read each line in file
     while (getline(readName, my_str)) {
@@ -52,19 +59,22 @@ void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream
 
         // execute until end of line
         while (s_stream.good()) {
-            string substr;
             // split commas and remove spaces at front of delimited strings
             getline(s_stream, substr, ',');
             substr.erase(0, substr.find_first_not_of(' '));
             // add to a list
             result.push_back(substr);
         }
-        // skip invalid input
-        if (result.size() != 2) {
-            cout << "Invalid input: NameFile.txt" << endl;
-            result.clear();
-            continue;
+        // error handling
+        if(!isdigit(result[0][0])){ //missing ID
+            throw (MyException("Incorrect input in courseFile.txt (missing ID): "+my_str, 200));
         }
+        if(!isalpha(result[1][0])){ //missing name
+            throw (MyException("Incorrect input in courseFile.txt (missing name): "+my_str, 201));
+        }
+        if (result.size() != 2) { // invalid inputs
+            throw (MyException("Incorrect input in NameFile.txt (missing input): "+my_str, 202));
+        } 
         // if student object not already created, create
         if (studentMap.find(result[0]) == studentMap.end())        // student object not found in map
             studentMap[result[0]] = student(result[1], result[0]); // put student in their place in student map, according to ID
@@ -79,7 +89,7 @@ void fileWork::writeOutput(unordered_map<string, course> &courseMap, unordered_m
         // iterate over every course the student takes
         for (string code : s.getCourses()) {
             // write Student ID, name, course code and decimal-formatted final grade to the parameter file.
-            myfile << id << ", " << s.getName() << ", " << code << ", " << fixed << setprecision(1) << courseMap[code].calFinal(id) << "\n";
+            myfile << id << ", " << s.getName() << ", " << code << ", " << courseMap[code].getGrades(id) << fixed << setprecision(1) << courseMap[code].calFinal(id) << "\n";
         }
     }
 }

@@ -36,6 +36,17 @@ public:
      *         returns the course code for this particular course (String)
      */
     string getCourseCode();
+
+    /*
+     * Description:
+     *    Obtains the grades for a student given their ID.
+     *
+     * Parameters:
+     *         id: the student's numerical id (string)
+     * returns:
+     *         return the grades for the student in string form with their respective weights
+     */
+    string getGrades(string id);
      
     /*
      * Description:

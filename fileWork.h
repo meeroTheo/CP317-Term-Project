@@ -1,4 +1,5 @@
 #pragma once
+#include "myException.h"
 #include "course.h"
 #include "student.h"
 #include <fstream>
