@@ -1,7 +1,7 @@
 #include "fileWork.h"
 
 void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ifstream &readCourse) {
-    string my_str, substr;
+    string my_str, substr, lineCount;
     vector<string> result;
     int count = 1;
     // read each line in file
