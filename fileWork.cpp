@@ -21,7 +21,7 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
             throw (MyException("Incorrect input in courseFile.txt (missing ID): "+my_str, 100));
         }
         if (result.size() != 6) { // invalid inputs
-            throw (MyException("Incorrect input in courseFile.txt (missing input): "+my_str, 101));
+            throw(MyException("Incorrect input in courseFile.txt (invalid input): " + my_str, 101));
         }   //incorrect course code
         if (result[1].length() != 5 || !isalpha(result[1][0]) || !isalpha(result[1][1]) || !isdigit(result[1][2]) || !isdigit(result[1][3]) || !isdigit(result[1][4])){
             throw (MyException("Incorrect course code in courseFile.txt: "+result[1], 102));
