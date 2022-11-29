@@ -26,7 +26,6 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
         if (result.size() != 6) { // invalid inputs
             my_str += " on line " + to_string(count);
             throw(MyException("Incorrect input in courseFile.txt (invalid input): " + my_str, 101));
-            printf("Line %d", count);
         }   //incorrect course code
         if (result[1].length() != 5 || !isalpha(result[1][0]) || !isalpha(result[1][1]) || !isdigit(result[1][2]) || !isdigit(result[1][3]) || !isdigit(result[1][4])){
             my_str += " on line " + to_string(count);
