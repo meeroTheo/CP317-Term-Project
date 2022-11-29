@@ -3,7 +3,7 @@
 void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordered_map<string, student> &studentMap, ifstream &readCourse) {
     string my_str, substr, lineCount;
     vector<string> result;
-    int count = 0;
+    int count = 1;
     // read each line in file
     while (getline(readCourse, my_str)) {
         // stream to get string of file
@@ -17,23 +17,18 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
             // add to a list
             result.push_back(substr);
         }
-        //error handling
-        count++;
-        if(!isdigit(result[0][0])){ //missing ID
-            my_str += " on line " + to_string(count);
-            throw (MyException("Incorrect input in courseFile.txt (missing ID): "+my_str, 100));
+        // error handling
+        if (!isdigit(result[0][0])) { // missing ID
+            throw(MyException("Incorrect input in courseFile.txt (missing ID): " + my_str + " on line " + to_string(count), 100));
         }
         if (result.size() != 6) { // invalid inputs
-            my_str += " on line " + to_string(count);
-            throw(MyException("Incorrect input in courseFile.txt (invalid input): " + my_str, 101));
-        }   //incorrect course code
-        if (result[1].length() != 5 || !isalpha(result[1][0]) || !isalpha(result[1][1]) || !isdigit(result[1][2]) || !isdigit(result[1][3]) || !isdigit(result[1][4])){
-            my_str += " on line " + to_string(count);
-            throw (MyException("Incorrect course code in courseFile.txt: "+result[1], 102));
-        }   //incorrect grade
-        if (stoi(result[2]) > 100 || stoi(result[3]) > 100 || stoi(result[4]) > 100 || stoi(result[5]) > 100 ){
-            my_str += " on line " + to_string(count);
-            throw (MyException("Incorrect grade in courseFile.txt (too large): "+my_str.substr(19,14), 103));
+            throw(MyException("Incorrect input in courseFile.txt (invalid input): " + my_str + " on line " + to_string(count), 101));
+        } // incorrect course code
+        if (result[1].length() != 5 || !isalpha(result[1][0]) || !isalpha(result[1][1]) || !isdigit(result[1][2]) || !isdigit(result[1][3]) || !isdigit(result[1][4])) {
+            throw(MyException("Incorrect course code in courseFile.txt: " + result[1] + " on line " + to_string(count), 102));
+        } // incorrect grade
+        if (stoi(result[2]) > 100 || stoi(result[3]) > 100 || stoi(result[4]) > 100 || stoi(result[5]) > 100) {
+            throw(MyException("Incorrect grade in courseFile.txt (too large): " + my_str.substr(19, 14) + " on line " + to_string(count), 103));
         }
         // make tuple of short cast marks
         tuple<short, short, short, short> tempTuple;
@@ -52,12 +47,14 @@ void fileWork::readCourseFile(unordered_map<string, course> &courseMap, unordere
             }
         }
         result.clear();
+        count++;
     }
 }
 
 void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream &readName) {
-    string my_str,substr;
+    string my_str, substr;
     vector<string> result;
+    int count = 1;
     // read each line in file
     while (getline(readName, my_str)) {
         // stream to get string of file
@@ -72,19 +69,20 @@ void fileWork::readNameFile(unordered_map<string, student> &studentMap, ifstream
             result.push_back(substr);
         }
         // error handling
-        if(!isdigit(result[0][0])){ //missing ID
-            throw (MyException("Incorrect input in courseFile.txt (missing ID): "+my_str, 200));
+        if (!isdigit(result[0][0])) { // missing ID
+            throw(MyException("Incorrect input in courseFile.txt (missing ID): " + my_str + " on line " + to_string(count), 200));
         }
-        if(!isalpha(result[1][0])){ //missing name
-            throw (MyException("Incorrect input in courseFile.txt (missing name): "+my_str, 201));
+        if (!isalpha(result[1][0])) { // missing name
+            throw(MyException("Incorrect input in courseFile.txt (missing name): " + my_str + " on line " + to_string(count), 201));
         }
         if (result.size() != 2) { // invalid inputs
-            throw (MyException("Incorrect input in NameFile.txt (missing input): "+my_str, 202));
-        } 
+            throw(MyException("Incorrect input in NameFile.txt (missing input): " + my_str + " on line " + to_string(count), 202));
+        }
         // if student object not already created, create
         if (studentMap.find(result[0]) == studentMap.end())        // student object not found in map
             studentMap[result[0]] = student(result[1], result[0]); // put student in their place in student map, according to ID
         result.clear();
+        count++;
     }
 }
 
